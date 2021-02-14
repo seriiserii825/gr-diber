@@ -8,7 +8,6 @@
     </svg>
   </g-link>
 </template>
-
 <script>
 export default {
   props: ['link']

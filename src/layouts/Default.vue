@@ -2,6 +2,7 @@
   <div class="layout">
     <Header />
     <slot />
+    <Footer/>
   </div>
 </template>
 
@@ -11,10 +12,12 @@ query { metadata { siteName } }
 
 <script>
 import Header from "~/components/Header.vue";
+import Footer from "../components/Footer/Footer";
 
 export default {
   components: {
-    Header
+    Header,
+    Footer
   }
 };
 </script>
