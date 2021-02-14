@@ -1,13 +1,10 @@
 <template>
   <Layout>
-    <h1>Contatti</h1>
+    <div class="page-contacts"></div>
   </Layout>
 </template>
-
-<script>
-export default {}
-</script>
-
-<style lang="scss">
-
+<style>
+.page-contacts {
+  padding-top: 60px;
+}
 </style>
