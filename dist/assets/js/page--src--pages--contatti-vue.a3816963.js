@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{"7Jrm":function(t,n,e){"use strict";e.r(n);var s={},u=e("KHd+"),a=Object(u.a)(s,(function(){var t=this.$createElement,n=this._self._c||t;return n("Layout",[n("h1",[this._v("Contatti")])])}),[],!1,null,null,null);n.default=a.exports}}]);

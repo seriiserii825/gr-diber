@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{zO6r:function(t,n,e){"use strict";e.r(n);var s={},a=e("KHd+"),u=null,i=Object(a.a)(s,(function(){var t=this.$createElement,n=this._self._c||t;return n("Layout",[n("h2",[this._v("Bevande: "+this._s(this.$page.cats.name))])])}),[],!1,null,null,null);"function"==typeof u&&u(i);n.default=i.exports}}]);

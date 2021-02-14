@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{Jaz9:function(t,e,n){"use strict";n.r(e);var i={},s=n("KHd+"),a=Object(s.a)(i,(function(){var t=this.$createElement,e=this._self._c||t;return e("Layout",[e("h1",[this._v("Servizi")])])}),[],!1,null,"998255d8",null);e.default=a.exports}}]);
