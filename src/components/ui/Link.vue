@@ -1,5 +1,5 @@
 <template>
-  <g-link :to="link" class="link">
+  <g-link :class="className ? className : ''" :target="blank ? '_blank' : '_self'" :to="link" class="link">
     <span><slot></slot></span>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16pt" height="16pt" viewBox="0 0 16 16" version="1.1">
       <g id="surface1">
@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  props: ['link']
+  props: ['link', 'blank', 'className'],
 }
 </script>
 

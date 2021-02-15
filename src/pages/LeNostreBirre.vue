@@ -6,7 +6,7 @@
           <img :src="item.node.featuredMedia.sourceUrl" alt="">
         </div>
         <h3 class="title">{{ item.node.title }}</h3>
-        <Link :link="item.node.url">Scopri tutte le birre</Link>
+        <Link :link="`/birre/${item.node.slug}`">Scopri tutte le birre</Link>
       </div>
     </div>
   </Layout>
@@ -21,9 +21,6 @@ query {
         title
         featuredMedia {
           sourceUrl
-        }
-        acf {
-          url
         }
       }
     }

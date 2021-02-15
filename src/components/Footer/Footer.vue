@@ -91,7 +91,6 @@ export default {
     axios
       .get('http://wp-diber-gridsome.host1670806.hostland.pro/wp-json/acf/v3/options/options')
       .then(response => {
-        console.log(response.data.acf.contacts);
         this.contacts = response.data.acf.contacts;
       })
       .catch(error => {
