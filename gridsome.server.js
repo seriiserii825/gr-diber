@@ -16,7 +16,7 @@ const axios = require('axios');
 module.exports = function(api) {
 	api.loadSource(async (actions) => {
 		const { data } = await axios.get(
-			'http://wp-diber-gridsome.host1670806.hostland.pro/wp-json/wp/v2/bevande-cat'
+			'https://gr-diber.seriiburduja.ru/wp-json/wp/v2/bevande-cat'
 		);
 		const collection = actions.addCollection('BevandeCats');
 		for (const item of data) {
