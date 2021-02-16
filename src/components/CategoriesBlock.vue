@@ -8,7 +8,7 @@
       />
       <div class="categories-block__footer">
         <h4 class="title">{{ item.node.name }}</h4>
-        <g-link class="link" :to="`/bevande-cat/${item.node.slug}`"><span> Vai al catalogo</span><i class="fas fa-chevron-circle-right"></i></g-link>
+        <g-link class="link" to="/altre-bevande/"><span> Vai al catalogo</span><i class="fas fa-chevron-circle-right"></i></g-link>
       </div>
     </div>
   </div>
