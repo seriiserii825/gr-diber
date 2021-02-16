@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{"7xmF":function(e,t,n){"use strict";n.r(t);var a={},s=n("KHd+"),r=Object(s.a)(a,(function(){var e=this.$createElement,t=this._self._c||e;return t("Layout",[t("h1",[this._v("Altre bevande")])])}),[],!1,null,"11bdf22a",null);t.default=r.exports}}]);
