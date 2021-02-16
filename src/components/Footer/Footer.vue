@@ -42,14 +42,14 @@
       <div class="main-footer__form">
         <h2 class="title title--color">Scrivici</h2>
         <div class="form">
-          <form>
+          <form action="https://formspree.io/f/xyybajwb" method="POST" @submit.prevent="onSubmit" ref="form">
             <div class="form-group">
               <label for="nome">Nome</label>
               <input type="text" name="nome" id="nome"/>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" name="email" id="email"/>
+              <input type="email" name="_replyto" id="email"/>
             </div>
             <div class="form-group">
               <label for="oggetto">Oggetto</label>
@@ -60,13 +60,14 @@
               <textarea name="messaggio" id="messaggio"></textarea>
             </div>
             <div class="form-group">
-              <input type="submit" value="Invia"/>
+              <input type="submit" value="Invia" :disabled="submitIsDisabled ? 'disabled' : false"/>
               <input class="checkbox" type="checkbox" name="check" id="check"/>
               <label for="check"
+                     @click="submitIsDisabled = !submitIsDisabled"
               >Cliccando su invia dichiari di aver preso visione e di accettare la nostra privacy policy
-              </label
-              >
+              </label>
             </div>
+            <p class="response" v-if="message">{{ message }}</p>
           </form>
         </div>
       </div>
@@ -84,7 +85,9 @@ const axios = require("axios");
 export default {
   data () {
     return {
-      contacts: null
+      contacts: null,
+      submitIsDisabled: true,
+      message: ''
     }
   },
   mounted () {
@@ -99,6 +102,28 @@ export default {
   },
   components: {
     Phone
+  },
+  methods: {
+    onSubmit () {
+      const form = this.$refs.form;
+      console.log(form);
+      const data = new FormData(form);
+      const xhr = new XMLHttpRequest();
+      console.log(form.method);
+      console.log(form.action);
+      xhr.open(form.method, form.action);
+      xhr.setRequestHeader("Accept", "application/json");
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState !== XMLHttpRequest.DONE) return;
+        if (xhr.status === 200) {
+          form.reset();
+          this.message = 'Success';
+        } else {
+          this.message = 'Error';
+        }
+      };
+      xhr.send(data);
+    }
   }
 }
 </script>

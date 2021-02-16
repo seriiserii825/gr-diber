@@ -62,3 +62,7 @@ p {
 	padding-right: 15px;
   }
 }
+input[type='submit']:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}
