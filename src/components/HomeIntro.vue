@@ -1,6 +1,6 @@
 <template>
   <div class="home-intro">
-    <g-image :src="$static.home.featuredMedia.sourceUrl" width="1920" />
+    <g-image src="../assets/images/home-intro.jpg" width="1920" />
     <div class="home-intro__content">
       <h1 class="home-intro__title">{{ $static.home.acf.homeIntro.title }}</h1>
       <h2 class="home-intro__subtitle">
