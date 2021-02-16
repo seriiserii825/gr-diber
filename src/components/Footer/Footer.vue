@@ -89,7 +89,7 @@ export default {
   },
   mounted () {
     axios
-      .get('http://wp-diber-gridsome.host1670806.hostland.pro/wp-json/acf/v3/options/options')
+      .get('https://gr-diber.seriiburduja.ru/wp-json/acf/v3/options/options')
       .then(response => {
         this.contacts = response.data.acf.contacts;
       })
