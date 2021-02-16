@@ -1,5 +1,6 @@
 <template>
   <Layout>
+    <h1>Title from developer</h1>
     <HomeIntro/>
     <OurBiers/>
     <CategoriesBlock/>
