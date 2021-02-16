@@ -43,21 +43,27 @@
         <h2 class="title title--color">Scrivici</h2>
         <div class="form">
           <form action="https://formspree.io/f/xyybajwb" method="POST" @submit.prevent="onSubmit" ref="form">
-            <div class="form-group">
+            <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
               <label for="nome">Nome</label>
-              <input type="text" name="nome" id="nome"/>
+              <input type="text" name="nome" id="nome" v-model.trim="$v.name.$model"/>
+              <div class="error" v-if="!$v.name.required && isSubmiting">Field is required</div>
+              <div class="error" v-if="!$v.name.minLength && isSubmiting">Name must be more than 4 characters</div>
             </div>
-            <div class="form-group">
+            <div class="form-group" :class="{ 'form-group--error': $v.email.$error }">
               <label for="email">Email</label>
-              <input type="email" name="_replyto" id="email"/>
+              <input type="email" name="_replyto" id="email" v-model.trim="$v.email.$model"/>
+              <div class="error" v-if="!$v.name.required && isSubmiting">Field is required</div>
+              <div class="error" v-if="!$v.email.email && isSubmiting">Field must be email</div>
             </div>
-            <div class="form-group">
+            <div class="form-group" :class="{ 'form-group--error': $v.oggetto.$error }">
               <label for="oggetto">Oggetto</label>
-              <input type="text" name="oggetto" id="oggetto"/>
+              <input type="text" name="oggetto" id="oggetto" v-model.trim="$v.oggetto.$model"/>
+              <div class="error" v-if="!$v.oggetto.required && isSubmiting">Field is required</div>
             </div>
-            <div class="form-group">
+            <div class="form-group" :class="{ 'form-group--error': $v.messaggio.$error }">
               <label for="messaggio">Messaggio</label>
-              <textarea name="messaggio" id="messaggio"></textarea>
+              <textarea name="messaggio" id="messaggio" v-model.trim="$v.messaggio.$model"></textarea>
+              <div class="error" v-if="!$v.messaggio.required && isSubmiting">Field is required</div>
             </div>
             <div class="form-group">
               <input type="submit" value="Invia" :disabled="submitIsDisabled ? 'disabled' : false"/>
@@ -67,7 +73,7 @@
               >Cliccando su invia dichiari di aver preso visione e di accettare la nostra privacy policy
               </label>
             </div>
-            <p class="response" v-if="message">{{ message }}</p>
+            <p class="success" v-if="message">{{ message }}</p>
           </form>
         </div>
       </div>
@@ -80,15 +86,37 @@
 </template>
 <script>
 import Phone from "../Phone";
-
+import { required, minLength, email } from 'vuelidate/lib/validators'
 const axios = require("axios");
 export default {
   data () {
     return {
       contacts: null,
       submitIsDisabled: true,
-      message: ''
+      message: '',
+      name: '',
+      email: '',
+      oggetto: '',
+      messaggio: '',
+      isSubmiting: false,
+      canSubmit: false
     }
+  },
+ validations: {
+    name: {
+      required,
+      minLength: minLength(4)
+   },
+   email: {
+      required,
+      email
+   },
+   oggetto: {
+      required
+   },
+   messaggio: {
+      required
+   }
   },
   mounted () {
     axios
@@ -105,24 +133,28 @@ export default {
   },
   methods: {
     onSubmit () {
-      const form = this.$refs.form;
-      console.log(form);
-      const data = new FormData(form);
-      const xhr = new XMLHttpRequest();
-      console.log(form.method);
-      console.log(form.action);
-      xhr.open(form.method, form.action);
-      xhr.setRequestHeader("Accept", "application/json");
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState !== XMLHttpRequest.DONE) return;
-        if (xhr.status === 200) {
-          form.reset();
-          this.message = 'Success';
-        } else {
-          this.message = 'Error';
-        }
-      };
-      xhr.send(data);
+      this.isSubmiting = true;
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        const form = this.$refs.form;
+        const data = new FormData(form);
+        const xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState !== XMLHttpRequest.DONE) return;
+          if (xhr.status === 200) {
+            form.reset();
+            this.message = 'Form was send...';
+            setTimeout(() => {
+            this.message = '';
+            }, 2000);
+          } else {
+            this.message = 'Error';
+          }
+        };
+        xhr.send(data);
+      }
     }
   }
 }
@@ -130,6 +162,7 @@ export default {
 <style lang="scss">
 @import "../../assets/scss/variables";
 @import "./Footer";
+@import "../../assets/scss/form";
 .socials {
   display: flex;
   margin-top: 40px;

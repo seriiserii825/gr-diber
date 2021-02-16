@@ -1,0 +1,13 @@
+.form-group--error {
+  input {
+    border-color: red !important;
+  }
+  .error {
+    color: red;
+  }
+}
+.success {
+  padding: 5px 10px;
+  color: green;
+  border: 1px solid green;
+}
